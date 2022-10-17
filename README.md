@@ -415,6 +415,14 @@ See the following Wiki pages:
 * [External applications](https://github.com/deviantony/docker-elk/wiki/External-applications)
 * [Popular integrations](https://github.com/deviantony/docker-elk/wiki/Popular-integrations)
 
+
+
+## Usage
+* Update the volume on ./extensions/filebeat/filebeat-compose.yml
+* Run 
+ - docker-compose -f docker-compose.yml -f extensions/filebeat/filebeat-compose.yml up -d
+ - docker-compose -f docker-compose.yml -f extensions/filebeat/filebeat-compose.yml up
+
 [elk-stack]: https://www.elastic.co/what-is/elk-stack
 [xpack]: https://www.elastic.co/what-is/open-x-pack
 [paid-features]: https://www.elastic.co/subscriptions

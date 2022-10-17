@@ -1,0 +1,33 @@
+## Filebeat configuration
+## https://github.com/elastic/beats/blob/main/deploy/docker/filebeat.docker.yml
+#
+
+# filebeat.config:
+#   modules:
+#     path: ${path.config}/modules.d/*.yml
+#     reload.enabled: false
+
+filebeat.inputs:
+- type: filestream
+  enabled: true
+  parsers:
+    - multiline:
+        type: pattern
+        pattern: '^[[:space:]]Event:'
+        negate: false
+        match: after
+  include_lines: ['Event:']
+  paths:
+   - /usr/share/filebeat/logs/wso2carbon*.log
+
+output.logstash:
+  hosts: ['logstash:5044']
+  username: logstash_internal
+  password: ${ELASTIC_PASSWORD}
+
+## HTTP endpoint for health checking
+## https://www.elastic.co/guide/en/beats/filebeat/current/http-endpoint.html
+#
+
+http.enabled: true
+http.host: 0.0.0.0
